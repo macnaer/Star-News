@@ -2,24 +2,23 @@ window.addEventListener("load", Init);
 
 function Init() {
   console.log("Init");
-  var urlSport =
-    "https://newsapi.org/v2/top-headlines?country=ua&category=sports&apiKey=18f1c87e444741aca30db0a569bba999";
-  var urlEntertaiment =
-    "https://newsapi.org/v2/top-headlines?country=ua&category=entertainment&apiKey=18f1c87e444741aca30db0a569bba999";
-  var urlHealth =
-    "https://newsapi.org/v2/top-headlines?country=ua&category=health&apiKey=18f1c87e444741aca30db0a569bba999";
-  var urlScience =
-    "https://newsapi.org/v2/top-headlines?country=ua&category=science&apiKey=18f1c87e444741aca30db0a569bba999";
-  var urlTechnology =
-    "https://newsapi.org/v2/top-headlines?country=ua&category=technology&apiKey=18f1c87e444741aca30db0a569bba999";
-  Request(urlSport, SportNews);
-  Request(urlEntertaiment, EntertainmentNews);
-  Request(urlHealth, HealthNews);
-  Request(urlScience, ScienceNews);
-  Request(urlTechnology, TechnologyNews);
+  var apiKey = "18f1c87e444741aca30db0a569bba999";
+  var category = ["sports", "entertainment", "health", "science", "technology"];
+  var callbackFunction = [
+    { news: sportsNews },
+    { news: entertainmentNews },
+    { news: healthNews },
+    { news: scienceNews },
+    { news: technologyNews }
+  ];
+
+  for (var i = 0; i < category.length; i++) {
+    Request(category[i], apiKey, callbackFunction[i].news);
+  }
 }
 
-function Request(url, callback) {
+function Request(category, apiKey, callback) {
+  var url = `https://newsapi.org/v2/top-headlines?country=ua&category=${category}&apiKey=${apiKey}`;
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url, true);
   xhr.send();
@@ -33,27 +32,28 @@ function Request(url, callback) {
       console.log(errStatus + ": " + errText);
     } else {
       var data = JSON.parse(xhr.responseText);
+      //console.log(data);
       callback(data);
     }
   };
 }
 
-function SportNews(news) {
-  console.log(news);
+function sportsNews(news) {
+  console.log("sportsNews", news);
 }
 
-function EntertainmentNews(news) {
-  console.log(news);
+function entertainmentNews(news) {
+    console.log("entertainmentNews", news);
 }
 
-function HealthNews(news) {
-  console.log(news);
+function healthNews(news) {
+    console.log("healthNews", news);
 }
 
-function ScienceNews(news) {
-  console.log(news);
+function scienceNews(news) {
+    console.log("scienceNews", news);
 }
 
-function TechnologyNews(news) {
-  console.log(news);
+function technologyNews(news) {
+    console.log("technologyNews", news);
 }
