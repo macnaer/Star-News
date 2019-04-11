@@ -139,7 +139,7 @@ body {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
-    height: 350px;
+    /* height: 350px; */
     line-height: 30px;
 }
 
@@ -221,4 +221,25 @@ body {
 .technology_news {
     color: #EAE7DC;
 
+}
+
+.newsTitle {
+    color: white;
+    font-size: 18px;
+}
+
+.newsImg {
+    width: 100%;
+    height: auto;
+}
+
+.newsArticle {
+    color: white;
+    line-height: 1.1;
+}
+
+.newsAuthor,
+.newsPublishedAt {
+    display: inline-block;
+    color: white;
 }
