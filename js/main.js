@@ -3,13 +3,14 @@ window.addEventListener("load", Init);
 function Init() {
   console.log("Init");
   var apiKey = "18f1c87e444741aca30db0a569bba999";
-  var category = ["sports", "entertainment", "health", "science", "technology"];
+ // var category = ["sports", "entertainment", "health", "science", "technology"];
+  var category = ["sports"];
   var callbackFunction = [
     { news: sportsNews },
-    { news: entertainmentNews },
-    { news: healthNews },
-    { news: scienceNews },
-    { news: technologyNews }
+    // { news: entertainmentNews },
+    // { news: healthNews },
+    // { news: scienceNews },
+    // { news: technologyNews }
   ];
 
   for (var i = 0; i < category.length; i++) {
@@ -39,7 +40,34 @@ function Request(category, apiKey, callback) {
 }
 
 function sportsNews(news) {
-  console.log("sportsNews", news);
+  console.log("sportsNews", news.articles);
+  var sportElem = document.querySelector("#sport");
+  for (var i = 0; i < 5; i ++){
+    var h3 = document.createElement('h3');
+
+    h3.className = "newsTitle";
+    h3.innerHTML = news.articles[i].title;
+    sportElem.appendChild(h3);
+    var img = document.createElement("img");
+    img.setAttribute("src", news.articles[i].urlToImage);
+    img.setAttribute("alt", news.articles[i].title);
+    img.className = "newsImg"
+    sportElem.appendChild(img);
+
+    var desc = document.createElement("p");
+    desc.className = "newsArticle";
+    desc.innerHTML = news.articles[i].description;
+    sportElem.appendChild(desc);
+
+    var author = document.createElement("span");
+    author.className = "newsAuthor";
+    author.innerHTML = news.articles[i].author;
+    sportElem.appendChild(author);
+    var publishedAt = document.createElement("span");
+    publishedAt.className = "newsPublishedAt";
+    publishedAt.innerHTML = news.articles[i].publishedAt;
+    sportElem.appendChild(publishedAt);
+  }
 }
 
 function entertainmentNews(news) {
