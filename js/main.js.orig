@@ -3,6 +3,10 @@ window.addEventListener("load", Init);
 function Init() {
   console.log("Init");
   var apiKey = "18f1c87e444741aca30db0a569bba999";
+<<<<<<< HEAD
+ // var category = ["sports", "entertainment", "health", "science", "technology"];
+  var category = ["sports"];
+=======
   var category = [
     "sports",
     "entertainment",
@@ -10,12 +14,13 @@ function Init() {
     "science",
     "technology"
   ];
+>>>>>>> UI-JS-Combiner
   var callbackFunction = [
     { news: sportsNews },
-    { news: entertainmentNews },
-    { news: healthNews },
-    { news: scienceNews },
-    { news: technologyNews }
+    // { news: entertainmentNews },
+    // { news: healthNews },
+    // { news: scienceNews },
+    // { news: technologyNews }
   ];
 
   for (var i = 0; i < category.length; i++) {
