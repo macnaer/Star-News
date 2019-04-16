@@ -1,7 +1,6 @@
 window.addEventListener("load", Init);
 
 function Init() {
-  console.log("Init");
   var apiKey = "18f1c87e444741aca30db0a569bba999";
   var category = [
     "sports",
@@ -21,6 +20,31 @@ function Init() {
   for (var i = 0; i < category.length; i++) {
     Request(category[i], apiKey, callbackFunction[i].news);
   }
+  
+  var weatherAPIKey = "d663677633bd6cb690bbdea66fe5a981";
+  var city = "Rivne";
+  WeatherRequest(city, weatherAPIKey, RenderWeather);
+}
+
+function WeatherRequest(city, weatherAPIKey, callback) {
+  var url = `http://api.openweathermap.org/data/2.5/forecast?id=7046809&APPID=${weatherAPIKey}`;
+  //api.openweathermap.org/data/2.5/forecast?id=707860&APPID=eb1eee072bb055a6ebad977afce5902f
+  http: https: var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.send();
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState != 4) return;
+
+    if (xhr.status != 200) {
+      var errStatus = xhr.status;
+      var errText = xhr.statusText;
+      console.log(errStatus + ": " + errText);
+    } else {
+      var data = JSON.parse(xhr.responseText);
+      callback(data);
+    }
+  };
 }
 
 function Request(category, apiKey, callback) {
@@ -38,14 +62,16 @@ function Request(category, apiKey, callback) {
       console.log(errStatus + ": " + errText);
     } else {
       var data = JSON.parse(xhr.responseText);
-      //console.log(data);
       callback(data);
     }
   };
 }
 
+function RenderWeather(weather){
+  console.log(weather);
+}
+
 function sportsNews(news) {
-  console.log("sportsNews", news.articles);
   var sportElem = document.querySelector("#sport");
   for (var i = 0; i < 5; i ++){
     var h3 = document.createElement('h3');
@@ -76,7 +102,6 @@ function sportsNews(news) {
 }
 
 function entertainmentNews(news) {
-    console.log("entertainmentNews", news);
   var sportElem = document.querySelector("#entertainment");
   for (var i = 0; i < 5; i++) {
     var h3 = document.createElement('h3');
@@ -107,7 +132,6 @@ function entertainmentNews(news) {
 }
 
 function healthNews(news) {
-    console.log("healthNews", news);
   var sportElem = document.querySelector("#health");
   for (var i = 0; i < 5; i++) {
     var h3 = document.createElement('h3');
@@ -138,7 +162,6 @@ function healthNews(news) {
 }
 
 function scienceNews(news) {
-    console.log("scienceNews", news);
   var sportElem = document.querySelector("#science");
   for (var i = 0; i < 5; i++) {
     var h3 = document.createElement('h3');
@@ -169,7 +192,6 @@ function scienceNews(news) {
 }
 
 function technologyNews(news) {
-    console.log("technologyNews", news);
   var sportElem = document.querySelector("#technology");
   for (var i = 0; i < 5; i++) {
     var h3 = document.createElement('h3');
