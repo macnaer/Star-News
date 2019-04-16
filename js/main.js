@@ -3,14 +3,19 @@ window.addEventListener("load", Init);
 function Init() {
   console.log("Init");
   var apiKey = "18f1c87e444741aca30db0a569bba999";
- // var category = ["sports", "entertainment", "health", "science", "technology"];
-  var category = ["sports"];
+  var category = [
+    "sports",
+    "entertainment",
+    "health",
+    "science",
+    "technology"
+  ];
   var callbackFunction = [
     { news: sportsNews },
-    // { news: entertainmentNews },
-    // { news: healthNews },
-    // { news: scienceNews },
-    // { news: technologyNews }
+    { news: entertainmentNews },
+    { news: healthNews },
+    { news: scienceNews },
+    { news: technologyNews }
   ];
 
   for (var i = 0; i < category.length; i++) {
@@ -72,16 +77,124 @@ function sportsNews(news) {
 
 function entertainmentNews(news) {
     console.log("entertainmentNews", news);
+  var sportElem = document.querySelector("#entertainment");
+  for (var i = 0; i < 5; i++) {
+    var h3 = document.createElement('h3');
+
+    h3.className = "newsTitle";
+    h3.innerHTML = news.articles[i].title;
+    sportElem.appendChild(h3);
+    var img = document.createElement("img");
+    img.setAttribute("src", news.articles[i].urlToImage);
+    img.setAttribute("alt", news.articles[i].title);
+    img.className = "newsImg"
+    sportElem.appendChild(img);
+
+    var desc = document.createElement("p");
+    desc.className = "newsArticle";
+    desc.innerHTML = news.articles[i].description;
+    sportElem.appendChild(desc);
+
+    var author = document.createElement("span");
+    author.className = "newsAuthor";
+    author.innerHTML = news.articles[i].author;
+    sportElem.appendChild(author);
+    var publishedAt = document.createElement("span");
+    publishedAt.className = "newsPublishedAt";
+    publishedAt.innerHTML = news.articles[i].publishedAt;
+    sportElem.appendChild(publishedAt);
+  }
 }
 
 function healthNews(news) {
     console.log("healthNews", news);
+  var sportElem = document.querySelector("#health");
+  for (var i = 0; i < 5; i++) {
+    var h3 = document.createElement('h3');
+
+    h3.className = "newsTitle";
+    h3.innerHTML = news.articles[i].title;
+    sportElem.appendChild(h3);
+    var img = document.createElement("img");
+    img.setAttribute("src", news.articles[i].urlToImage);
+    img.setAttribute("alt", news.articles[i].title);
+    img.className = "newsImg"
+    sportElem.appendChild(img);
+
+    var desc = document.createElement("p");
+    desc.className = "newsArticle";
+    desc.innerHTML = news.articles[i].description;
+    sportElem.appendChild(desc);
+
+    var author = document.createElement("span");
+    author.className = "newsAuthor";
+    author.innerHTML = news.articles[i].author;
+    sportElem.appendChild(author);
+    var publishedAt = document.createElement("span");
+    publishedAt.className = "newsPublishedAt";
+    publishedAt.innerHTML = news.articles[i].publishedAt;
+    sportElem.appendChild(publishedAt);
+  }
 }
 
 function scienceNews(news) {
     console.log("scienceNews", news);
+  var sportElem = document.querySelector("#science");
+  for (var i = 0; i < 5; i++) {
+    var h3 = document.createElement('h3');
+
+    h3.className = "newsTitle";
+    h3.innerHTML = news.articles[i].title;
+    sportElem.appendChild(h3);
+    var img = document.createElement("img");
+    img.setAttribute("src", news.articles[i].urlToImage);
+    img.setAttribute("alt", news.articles[i].title);
+    img.className = "newsImg"
+    sportElem.appendChild(img);
+
+    var desc = document.createElement("p");
+    desc.className = "newsArticle";
+    desc.innerHTML = news.articles[i].description;
+    sportElem.appendChild(desc);
+
+    var author = document.createElement("span");
+    author.className = "newsAuthor";
+    author.innerHTML = news.articles[i].author;
+    sportElem.appendChild(author);
+    var publishedAt = document.createElement("span");
+    publishedAt.className = "newsPublishedAt";
+    publishedAt.innerHTML = news.articles[i].publishedAt;
+    sportElem.appendChild(publishedAt);
+  }
 }
 
 function technologyNews(news) {
     console.log("technologyNews", news);
+  var sportElem = document.querySelector("#technology");
+  for (var i = 0; i < 5; i++) {
+    var h3 = document.createElement('h3');
+
+    h3.className = "newsTitle";
+    h3.innerHTML = news.articles[i].title;
+    sportElem.appendChild(h3);
+    var img = document.createElement("img");
+    img.setAttribute("src", news.articles[i].urlToImage);
+    img.setAttribute("alt", news.articles[i].title);
+    img.className = "newsImg"
+    sportElem.appendChild(img);
+
+    var desc = document.createElement("p");
+    desc.className = "newsArticle";
+    desc.innerHTML = news.articles[i].description;
+    sportElem.appendChild(desc);
+
+    var author = document.createElement("span");
+    author.className = "newsAuthor";
+    author.innerHTML = news.articles[i].author;
+    sportElem.appendChild(author);
+    var publishedAt = document.createElement("span");
+    publishedAt.className = "newsPublishedAt";
+    publishedAt.innerHTML = news.articles[i].publishedAt;
+    sportElem.appendChild(publishedAt);
+  }
 }
