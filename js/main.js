@@ -2,13 +2,7 @@ window.addEventListener("load", Init);
 
 function Init() {
   var apiKey = "18f1c87e444741aca30db0a569bba999";
-  var category = [
-    "sports",
-    "entertainment",
-    "health",
-    "science",
-    "technology"
-  ];
+  var category = ["sports", "entertainment", "health", "science", "technology"];
   var callbackFunction = [
     { news: sportsNews },
     { news: entertainmentNews },
@@ -20,7 +14,7 @@ function Init() {
   for (var i = 0; i < category.length; i++) {
     Request(category[i], apiKey, callbackFunction[i].news);
   }
-  
+
   var weatherAPIKey = "d663677633bd6cb690bbdea66fe5a981";
   var city = "Rivne";
   WeatherRequest(city, weatherAPIKey, RenderWeather);
@@ -67,14 +61,37 @@ function Request(category, apiKey, callback) {
   };
 }
 
-function RenderWeather(weather){
+function RenderWeather(weather) {
   console.log(weather);
+  var weatherElement = document.querySelector("#weather");
+  for (var i = 0; i < 5; i++) {
+    var weatherDiv = document.createElement("div");
+    weatherDiv.className = "weather";
+    var city = document.createElement("div");
+    city.className = "city";
+    city.innerHTML = `${weather.city.name}  ${weather.city.country}`;
+    var weatherBody = document.createElement("div");
+    weatherBody.className = "weatherList";
+    weatherBody.innerHTML = `${weather.list[i].dt_txt} ${
+      weather.list[i].weather[0].description
+    } ${weather.list[i].weather[0].icon}`;
+
+    var weatherTemp = document.createElement("div");
+    weatherTemp.className = "weatherTemp";
+
+    weatherTemp.innerHTML = `${weather.list[0].main.temp}`;
+
+    weatherElement.appendChild(weatherDiv);
+    weatherDiv.appendChild(city);
+    weatherDiv.appendChild(weatherBody);
+    weatherDiv.appendChild(weatherTemp);
+  }
 }
 
 function sportsNews(news) {
   var sportElem = document.querySelector("#sport");
-  for (var i = 0; i < 5; i ++){
-    var h3 = document.createElement('h3');
+  for (var i = 0; i < 5; i++) {
+    var h3 = document.createElement("h3");
 
     h3.className = "newsTitle";
     h3.innerHTML = news.articles[i].title;
@@ -82,7 +99,7 @@ function sportsNews(news) {
     var img = document.createElement("img");
     img.setAttribute("src", news.articles[i].urlToImage);
     img.setAttribute("alt", news.articles[i].title);
-    img.className = "newsImg"
+    img.className = "newsImg";
     sportElem.appendChild(img);
 
     var desc = document.createElement("p");
@@ -104,7 +121,7 @@ function sportsNews(news) {
 function entertainmentNews(news) {
   var sportElem = document.querySelector("#entertainment");
   for (var i = 0; i < 5; i++) {
-    var h3 = document.createElement('h3');
+    var h3 = document.createElement("h3");
 
     h3.className = "newsTitle";
     h3.innerHTML = news.articles[i].title;
@@ -112,7 +129,7 @@ function entertainmentNews(news) {
     var img = document.createElement("img");
     img.setAttribute("src", news.articles[i].urlToImage);
     img.setAttribute("alt", news.articles[i].title);
-    img.className = "newsImg"
+    img.className = "newsImg";
     sportElem.appendChild(img);
 
     var desc = document.createElement("p");
@@ -134,7 +151,7 @@ function entertainmentNews(news) {
 function healthNews(news) {
   var sportElem = document.querySelector("#health");
   for (var i = 0; i < 5; i++) {
-    var h3 = document.createElement('h3');
+    var h3 = document.createElement("h3");
 
     h3.className = "newsTitle";
     h3.innerHTML = news.articles[i].title;
@@ -142,7 +159,7 @@ function healthNews(news) {
     var img = document.createElement("img");
     img.setAttribute("src", news.articles[i].urlToImage);
     img.setAttribute("alt", news.articles[i].title);
-    img.className = "newsImg"
+    img.className = "newsImg";
     sportElem.appendChild(img);
 
     var desc = document.createElement("p");
@@ -164,7 +181,7 @@ function healthNews(news) {
 function scienceNews(news) {
   var sportElem = document.querySelector("#science");
   for (var i = 0; i < 5; i++) {
-    var h3 = document.createElement('h3');
+    var h3 = document.createElement("h3");
 
     h3.className = "newsTitle";
     h3.innerHTML = news.articles[i].title;
@@ -172,7 +189,7 @@ function scienceNews(news) {
     var img = document.createElement("img");
     img.setAttribute("src", news.articles[i].urlToImage);
     img.setAttribute("alt", news.articles[i].title);
-    img.className = "newsImg"
+    img.className = "newsImg";
     sportElem.appendChild(img);
 
     var desc = document.createElement("p");
@@ -194,7 +211,7 @@ function scienceNews(news) {
 function technologyNews(news) {
   var sportElem = document.querySelector("#technology");
   for (var i = 0; i < 5; i++) {
-    var h3 = document.createElement('h3');
+    var h3 = document.createElement("h3");
 
     h3.className = "newsTitle";
     h3.innerHTML = news.articles[i].title;
@@ -202,7 +219,7 @@ function technologyNews(news) {
     var img = document.createElement("img");
     img.setAttribute("src", news.articles[i].urlToImage);
     img.setAttribute("alt", news.articles[i].title);
-    img.className = "newsImg"
+    img.className = "newsImg";
     sportElem.appendChild(img);
 
     var desc = document.createElement("p");
