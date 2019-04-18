@@ -244,6 +244,14 @@ body {
     color: white;
 }
 
-.weather{
+.weather {
     color: white;
+    text-align: center;
+}
+
+#weather {
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }

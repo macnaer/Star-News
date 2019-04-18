@@ -22,7 +22,8 @@ function Init() {
 
 function WeatherRequest(city, weatherAPIKey, callback) {
   var url = `http://api.openweathermap.org/data/2.5/forecast?id=7046809&APPID=${weatherAPIKey}`;
-  //api.openweathermap.org/data/2.5/forecast?id=707860&APPID=eb1eee072bb055a6ebad977afce5902f
+  //var url = `https://api.openweathermap.org/data/2.5/weather?id=${weather_city_id}&units=metric&lang=${global_lang}&APPID=${weather_key}`;
+
   http: https: var xhr = new XMLHttpRequest();
   xhr.open("GET", url, true);
   xhr.send();
@@ -64,7 +65,7 @@ function Request(category, apiKey, callback) {
 function RenderWeather(weather) {
   console.log(weather);
   var weatherElement = document.querySelector("#weather");
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 40; i+=8) {
     var weatherDiv = document.createElement("div");
     weatherDiv.className = "weather";
     var city = document.createElement("div");
@@ -72,18 +73,24 @@ function RenderWeather(weather) {
     city.innerHTML = `${weather.city.name}  ${weather.city.country}`;
     var weatherBody = document.createElement("div");
     weatherBody.className = "weatherList";
-    weatherBody.innerHTML = `${weather.list[i].dt_txt} ${
-      weather.list[i].weather[0].description
-    } ${weather.list[i].weather[0].icon}`;
+    weatherBody.innerHTML = weather.list[i].dt_txt + "<br />" + weather.list[i].weather[0].description;
 
+    var img = document.createElement("img");
+    img.setAttribute(
+      "src",
+      "https://openweathermap.org/img/w/" +
+        weather.list[i].weather[0].icon +
+        ".png"
+    );
     var weatherTemp = document.createElement("div");
     weatherTemp.className = "weatherTemp";
 
-    weatherTemp.innerHTML = `${weather.list[0].main.temp}`;
+    weatherTemp.innerHTML = `${weather.list[i].main.temp}`;
 
     weatherElement.appendChild(weatherDiv);
     weatherDiv.appendChild(city);
     weatherDiv.appendChild(weatherBody);
+    weatherDiv.appendChild(img);
     weatherDiv.appendChild(weatherTemp);
   }
 }
